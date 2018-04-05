@@ -1,1 +1,17 @@
-Welcome to this page <%= username%> !!!
+<h1>Change Management System</h1>
+
+<% if(username.toUpperCase() === "SANDEEP"){ %>
+	<p>LOGIN SUCCESSFUL</p>
+	<p>Welcome to this page <%= username%> !!!</p>
+<% } else { %>
+	<p>INVALID USERNAME</p>
+<% } %>
+
+
+
+<% list.forEach(function(l){ %>
+	
+	<p><%= l.name%> - <%= l.title%></p>
+
+
+<% }); %>

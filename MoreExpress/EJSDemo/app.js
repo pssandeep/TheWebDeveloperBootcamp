@@ -4,9 +4,34 @@ var app = express();
 
 app.get("/login/:username", function(req,res){
 	var user = req.params.username;
-	res.render("username.ejs", {username : user});
+
+	var list = [
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"},
+		{ name:"sandeep", title:"Developer"}
+	];
+	res.render("username.ejs", {username : user, list:list});
 
 });
+
 
 app.get("/", function(req,res){
 
