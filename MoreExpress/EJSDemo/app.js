@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 app.get("/login/:username", function(req,res){
 	var user = req.params.username;
@@ -28,14 +30,14 @@ app.get("/login/:username", function(req,res){
 		{ name:"sandeep", title:"Developer"},
 		{ name:"sandeep", title:"Developer"}
 	];
-	res.render("username.ejs", {username : user, list:list});
+	res.render("username", {username : user, list:list});
 
 });
 
 
 app.get("/", function(req,res){
 
-	res.render("home.ejs");
+	res.render("home");
 	//res.send("WORKING...");
 
 });
