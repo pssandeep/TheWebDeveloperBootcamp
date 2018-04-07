@@ -1,0 +1,17 @@
+	<% include partials/header %>
+	
+	<h1> My To Do List</h1>
+	<% toDoList.forEach(function(todo){ %>
+
+	<li><%= todo%> </li>
+
+	<% }); %>
+
+	<form action = "/add" method="POST">
+
+		<input type="text" name="newToDo" placeholder="Enter New ToDo">
+		<button>Add</button>
+
+	</form>
+
+	<% include partials/footer %>
