@@ -1,5 +1,5 @@
 <% include partials/header %>
-    <H1>OMDB MOVIE SEARCH PAGE</H1>
+    <H1>OMDB Movie Search Page</H1>
 
 
     <form action="/movieSearch" method="POST">
@@ -10,14 +10,19 @@
     <br>
     <br>
     <hr>
-    <P>Results:</P>
+    <div></div><P>Results:</P>
     <ol>
         <% searchResult.forEach(function(result){ %>
-            <li>
-              <a href="#"> <%= result["Title"] %> </a> -  <%= result["Year"] %> - <%= result["Type"]%>
+            <% var postURL = result["Poster"]; %>
+            <% var imdbID = result["imdbID"]; %>
+            <li id=<%=imdbID%>>
+              <%= result["Title"] %>  -  <%= result["Year"] %> - <%= result["Type"]%>
             </li>
         <% }); %>
     </ol>
-    
+</div>
+<div>
+    <img src = "#">
+</div>
     
 <% include partials/footer %>
