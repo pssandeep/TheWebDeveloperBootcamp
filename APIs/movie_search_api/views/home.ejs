@@ -14,7 +14,7 @@
     <ol>
         <% searchResult.forEach(function(result){ %>
             <li>
-               Title :  <%= result["Title"] %>
+              <a href="#"> <%= result["Title"] %> </a> -  <%= result["Year"] %> - <%= result["Type"]%>
             </li>
         <% }); %>
     </ol>

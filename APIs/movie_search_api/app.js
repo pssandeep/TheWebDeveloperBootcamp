@@ -32,19 +32,14 @@ app.post("/movieSearch", function (req, res) {
                 results.forEach(element => {
                     searchResult.push(element);
                 });
-                //var parsedData = JSON.parse(searchbody);
                 console.log(searchResult);
-                // parsedData.Search.forEach(element => {
-                //     console.log(element["Title"] + " - " + element["Year"] + " - " + element["imdbID"]);
-                // });
-                // console.log(typeof parsedData.Search);
             }
-
+            searchParam = "";
+            console.log(res.statusCode + " - " + res.statusMessage);
+            res.redirect("/");
         });
     }
-    searchParam = "";
-    console.log(res.statusCode +" - " + res.statusMessage);
-    res.redirect("/");
+
 });
 
 app.get("/", function (req, res) {
