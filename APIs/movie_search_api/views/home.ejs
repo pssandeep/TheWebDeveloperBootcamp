@@ -1,0 +1,23 @@
+<% include partials/header %>
+    <H1>OMDB MOVIE SEARCH PAGE</H1>
+
+
+    <form action="/movieSearch" method="POST">
+        <input type="text" name="search" placeholder="Search Movies...">
+        <button>submit</button>
+    </form>
+
+    <br>
+    <br>
+    <hr>
+    <P>Results:</P>
+    <ol>
+        <% searchResult.forEach(function(result){ %>
+            <li>
+               Title :  <%= result["Title"] %>
+            </li>
+        <% }); %>
+    </ol>
+    
+    
+<% include partials/footer %>
