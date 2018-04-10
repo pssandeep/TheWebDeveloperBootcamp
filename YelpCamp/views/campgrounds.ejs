@@ -1,11 +1,13 @@
 <% include partials/header %>
 <H1>List of CampGrounds</H1>
 
+<a href = "/">Home</a>
+<a href = "/campgrounds/new"> Add CampGrounds</a>
 
 <% campgrounds.forEach(function(campground){ %>
 
     <div>
-        <p><%= campground.name%></p>
+        <H3><%= campground.name%></H3>
         <img src = "<%= campground.image%>">
 
     </div>
