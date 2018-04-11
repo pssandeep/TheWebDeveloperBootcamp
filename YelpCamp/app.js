@@ -22,6 +22,9 @@ var campgrounds= [
     {name:"Camp Ground 4", image : "http://parkweb.vic.gov.au/__data/assets/image/0007/665413/varieties/heroImageLarge.jpg"},
     {name:"Camp Ground 5", image : "http://parkweb.vic.gov.au/__data/assets/image/0008/665432/varieties/heroImageLarge.jpg"},
     {name:"Camp Ground 6", image : "http://parkweb.vic.gov.au/__data/assets/image/0008/688049/varieties/heroImageLarge.jpg"},
+    {name:"Camp Ground 4", image : "http://parkweb.vic.gov.au/__data/assets/image/0007/665413/varieties/heroImageLarge.jpg"},
+    {name:"Camp Ground 5", image : "http://parkweb.vic.gov.au/__data/assets/image/0008/665432/varieties/heroImageLarge.jpg"},
+    {name:"Camp Ground 6", image : "http://parkweb.vic.gov.au/__data/assets/image/0008/688049/varieties/heroImageLarge.jpg"}
 ];
 
 app.get("/campgrounds",function(req,res){
