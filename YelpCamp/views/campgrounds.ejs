@@ -11,16 +11,15 @@
                 </p>
             </div>
         </header>
-        <div class="row text-center">
+        <div class="row row-eq-height">
             <% campgrounds.forEach(function(campground){ %>
                 <div class="col-md-3 col-sm-6">
-                    <div class="thumbnail">
-                        <img src="<%= campground.image%>" title="<%= campground.name%>">
-                        <div class = "caption"><%= campground.name%></div>
-                    </div>
+                        <img class = "img-thumbnail rounded float-left imgheight" src="<%= campground.image%>" title="<%= campground.name%>">
+                        <div class = "caption text-center"><%= campground.name%></div>
 
                 </div>
                 <% }); %>
         </div>
+
     </div>
     <% include partials/footer %>
