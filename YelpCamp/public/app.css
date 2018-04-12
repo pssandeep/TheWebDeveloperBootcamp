@@ -16,3 +16,20 @@
 .navbar-collapse.collapse.in {
     display: block!important;
   }
+
+input.inputwidth[type = "text"],
+button.btnwidth{
+      width : 30%;
+      margin :25px auto;
+  }
+
+  div.footerwidth{
+      width : 30%;
+      margin : 25px auto;
+      
+  }
+
+
+.hdcenter{
+    text-align: center;
+}

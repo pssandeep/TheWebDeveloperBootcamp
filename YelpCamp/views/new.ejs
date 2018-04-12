@@ -1,14 +1,16 @@
 <% include partials/header %>
-<h1>Create New CampGrounds</h1>
 
 
-<form action = "/campgrounds" method="POST">
+    <div class="container">
+            <h2 class = "hdcenter">Create New CampGrounds</h2>
+        <form action="/campgrounds" method="POST">
 
-    <input type="text" name = "name" placeholder="Name">
-    <input type="text" name = "image" placeholder="Image URL">
-    <button>Add CampGrounds</button>
+            <input class = "form-control inputwidth text-center" type="text" name="name" placeholder="Name">
+            <input class = "form-control inputwidth text-center" type="text" name="image" placeholder="Image URL">
+            <button class = "btn btn-outline-info btn-block btnwidth">Add CampGrounds</button>
 
-</form>
+        </form>
 
-<a href = "/campgrounds">Back</a>
-<% include partials/footer %>
+        <div class = "footerwidth"><a href="/campgrounds">Back</a></div>
+    </div>
+    <% include partials/footer %>
