@@ -20,7 +20,8 @@ mongoose.connect('mongodb://localhost/YelpCamp');
 
 var campgroundSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description:String
 });
 
 var CampGround = mongoose.model("CampGround", campgroundSchema);
@@ -75,13 +76,15 @@ var CampGround = mongoose.model("CampGround", campgroundSchema);
 //     }
 // ];
 
+
+// index route. To display all the campgrounds
 app.get("/campgrounds", function (req, res) {
 
     CampGround.find({}, function (err, campgrounds) {
         if (err) {
             console.log(err);
         } else {
-            res.render("campgrounds", {
+            res.render("index", {
                 campgrounds: campgrounds
             });
         }
@@ -92,29 +95,47 @@ app.get("/campgrounds", function (req, res) {
     // });
 });
 
+// get route to show the form to enter new camp grounds.
 app.get("/campgrounds/new", function (req, res) {
 
     res.render("new");
 });
 
+//show route. Show more details about the campgrounds
+app.get("/campgrounds/:id", function (req, res) {
+    CampGround.findById(req.params.id, function (err, campground) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("show", {
+                campground: campground
+            });
+        }
+    });
+
+});
+
+//post route. Add new campgrounds to database
 app.post("/campgrounds", function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
+    var desc = req.body.description;
     var newCampGround = {
         name: name,
-        image: image
+        image: image,
+        description : desc
     };
 
     CampGround.create(newCampGround, function (err, newlyAddedCampground) {
         if (err) {
             console.log(err);
         } else {
-            console.log("NEWLY CREATED CAMPGROUND");
-            console.log(newlyAddedCampground);
             res.redirect("/campgrounds");
         }
     });
 
 
 });
+
+//server port listening
 app.listen("3000", () => console.log("YelpCap Server started on Port #3000"));

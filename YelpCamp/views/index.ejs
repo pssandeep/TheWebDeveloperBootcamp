@@ -16,6 +16,7 @@
                 <div class="col-md-3 col-sm-6">
                         <img class = "img-thumbnail rounded float-left imgheight" src="<%= campground.image%>" title="<%= campground.name%>">
                         <div class = "caption text-center"><%= campground.name%></div>
+                        <div class = "text-center"><a class="btn btn-primary btn-sm" href="/campgrounds/<%= campground._id%>">More Info</a></div>
 
                 </div>
                 <% }); %>
