@@ -11,71 +11,18 @@ app.use(urlencodedParser);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-app.get("/", function (req, res) {
-
-    res.render("home");
-});
-
+//Connect to MongoDB
 mongoose.connect('mongodb://localhost/YelpCamp');
 
+//Schema Definition
 var campgroundSchema = new mongoose.Schema({
     name: String,
     image: String,
     description:String
 });
 
+//Schema Model
 var CampGround = mongoose.model("CampGround", campgroundSchema);
-
-// CampGround.create({
-//     name: "Camp Ground 1",
-//     image: "http://parkweb.vic.gov.au/__data/assets/image/0005/665519/varieties/heroImageLarge.jpg"
-// }, function (err, campground) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("NEWLY CREATED CAMPGROUND");
-//         console.log(campground);
-//     }
-// });
-
-// var campgrounds = [{
-//         name: "Camp Ground 1",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0005/665519/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 2",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0011/665399/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 3",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0011/695450/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 4",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0007/665413/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 5",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0008/665432/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 6",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0008/688049/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 4",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0007/665413/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 5",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0008/665432/varieties/heroImageLarge.jpg"
-//     },
-//     {
-//         name: "Camp Ground 6",
-//         image: "http://parkweb.vic.gov.au/__data/assets/image/0008/688049/varieties/heroImageLarge.jpg"
-//     }
-// ];
-
 
 // index route. To display all the campgrounds
 app.get("/campgrounds", function (req, res) {
@@ -90,9 +37,14 @@ app.get("/campgrounds", function (req, res) {
         }
     });
 
-    // res.render("campgrounds", {
-    //     campgrounds: campgrounds
-    // });
+});
+
+// All Routes.
+
+//home route
+app.get("/", function (req, res) {
+
+    res.render("home");
 });
 
 // get route to show the form to enter new camp grounds.
@@ -137,5 +89,5 @@ app.post("/campgrounds", function (req, res) {
 
 });
 
-//server port listening
+//server port listening at Port 3000
 app.listen("3000", () => console.log("YelpCap Server started on Port #3000"));
