@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/demo');
+mongoose.connect('mongodb://localhost/YelpCamp');
 
 
 var dogSchema = mongoose.Schema({
