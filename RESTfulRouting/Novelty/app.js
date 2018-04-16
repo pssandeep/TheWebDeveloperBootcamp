@@ -41,21 +41,44 @@ var newChange = new Change({
 //     }
 // });
 
-app.get("/", function(req,res){
-    res.redirect("/change");
-});
-
-app.get("/change", function(req,res){
-    Change.find({}, function(err, resultChanges){
-        if(err){
+app.get("/change", function (req, res) {
+    Change.find({}, function (err, resultChanges) {
+        if (err) {
             console.log(err);
-        } else{
-            res.render("index", {resultChanges: resultChanges});
+        } else {
+            res.render("index", {
+                resultChanges: resultChanges
+            });
         }
 
     });
 
 });
+
+app.get("/change/new", function (req, res) {
+
+    res.render("new");
+
+});
+
+app.post("/change", function (req, res) {
+
+    Change.create(req.body.change, function (err, savedChange) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/change");
+        }
+    });
+
+});
+
+app.get("/", function (req, res) {
+
+    res.redirect("/change");
+});
+
+
 
 
 // All RESTful Routes

@@ -1,0 +1,15 @@
+<% include ./partials/header %>
+
+
+    <H1>CHANGE MANAGEMENT SYSTEM</H1>
+
+    <form action="/change" method="POST">
+        <div><input type="text" name="change[changeId]" placeholder="Change Id"></div>
+        <div><input type="text" name="change[header]" placeholder="Change Header"></div>
+        <div><textarea name="change[description]"  cols="100" rows="10"> Description</textarea></div>
+        <button>Submit</button>
+
+    </form>
+
+
+<% include ./partials/footer %>
