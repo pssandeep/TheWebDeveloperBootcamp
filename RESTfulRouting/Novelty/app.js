@@ -12,19 +12,51 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 //Connect to MongoDB
-mongoose.connect('mongodb://localhost/blogapp');
+mongoose.connect('mongodb://localhost/Novelty');
 
 //Schema Definition
-var blogSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    body:String,
-    created:{type: Date, default: Date.now }
+var changeSchema = new mongoose.Schema({
+    changeId: String,
+    header: String,
+    description: String,
+    enteredDate: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+var Change = mongoose.model("Change", changeSchema);
+
+var newChange = new Change({
+    changeId: "1",
+    header: "Change 1",
+    description: "Change Description"
+});
+
+// Change.create(newChange, function (err, savedChange) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log(savedChange);
+//     }
+// });
+
+app.get("/", function(req,res){
+    res.redirect("/change");
+});
+
+app.get("/change", function(req,res){
+    Change.find({}, function(err, resultChanges){
+        if(err){
+            console.log(err);
+        } else{
+            res.render("index", {resultChanges: resultChanges});
+        }
+
+    });
+
 });
 
 
-
-
 // All RESTful Routes
-
 app.listen("3000", () => console.log("BlogApp started on Port #3000"));

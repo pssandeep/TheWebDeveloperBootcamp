@@ -1,0 +1,15 @@
+<% include ./partials/header %>
+
+
+<H1>CHANGE MANAGEMENT SYSTEM</H1>
+
+<% resultChanges.forEach(function(change){ %>
+
+    <div><%= change.changeId%></div>
+    <div><%= change.header%></div>
+    <div><%= change.description%></div>
+    <div><%= change.enteredDate.toDateString() %></div>
+    
+<% }); %>
+
+<% include ./partials/footer %>
