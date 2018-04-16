@@ -61,6 +61,21 @@ app.get("/change/new", function (req, res) {
 
 });
 
+app.get("/change/:changeId", function (req, res) {
+
+    Change.findById(req.params.changeId, function (err, resultChange) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("show", {
+                resultChange: resultChange
+            });
+        }
+
+    });
+
+});
+
 app.post("/change", function (req, res) {
 
     Change.create(req.body.change, function (err, savedChange) {
@@ -82,4 +97,4 @@ app.get("/", function (req, res) {
 
 
 // All RESTful Routes
-app.listen("3000", () => console.log("BlogApp started on Port #3000"));
+app.listen("3000", () => console.log("Novelty - Change Mangement System Server started on Port #3000"));

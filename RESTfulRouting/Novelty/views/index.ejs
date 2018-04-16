@@ -1,15 +1,24 @@
 <% include ./partials/header %>
 
 
-<H1>CHANGE MANAGEMENT SYSTEM</H1>
+    <H1>CHANGE MANAGEMENT SYSTEM - INDEX PAGE</H1>
 
-<% resultChanges.forEach(function(change){ %>
+    <% resultChanges.forEach(function(change){ %>
 
-    <div><%= change.changeId%></div>
-    <div><%= change.header%></div>
-    <div><%= change.description%></div>
-    <div><%= change.enteredDate.toDateString() %></div>
-    
-<% }); %>
+        <div>
+            <a href="/change/<%= change._id%>">
+                <%= change.changeId%>
+            </a>
+        </div>
+        <div>
+            <%= change.header%>
+        </div>
+        <div>
+            <%= change.enteredDate.toDateString() %>
+        </div>
 
-<% include ./partials/footer %>
+        <% }); %>
+
+            <a href="/change/new"> Add Change</a>
+
+            <% include ./partials/footer %>

@@ -1,0 +1,22 @@
+<% include ./partials/header %>
+
+
+    <H1>CHANGE MANAGEMENT SYSTEM - INDEX PAGE</H1>
+
+
+    <div>
+        <%= resultChange.changeId%>
+    </div>
+    <div>
+        <%= resultChange.header%>
+    </div>
+    <div>
+        <%= resultChange.description%>
+    </div>
+    <div>
+        <%= resultChange.enteredDate.toDateString() %>
+    </div>
+
+    <a href="/change"> Home</a>
+
+    <% include ./partials/footer %>
