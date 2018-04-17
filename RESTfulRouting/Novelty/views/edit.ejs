@@ -1,8 +1,6 @@
 <% include ./partials/header %>
 
 
-    <H1>CHANGE MANAGEMENT SYSTEM - EDIT PAGE</H1>
-
     <form action="/change/<%= resultChange._id %>?__method=PUT" method="POST">
         <div>
             <input type="text" name="change[changeId]" value = "<%= resultChange.changeId %>">

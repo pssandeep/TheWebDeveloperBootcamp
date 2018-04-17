@@ -1,29 +1,31 @@
 <% include ./partials/header %>
 
 
-    <H1>CHANGE MANAGEMENT SYSTEM - INDEX PAGE</H1>
 
     <% resultChanges.forEach(function(change){ %>
+        <div class="ui raised container segment">
+            <div class=" text container">
+                <h2 class = "ui header">
+                <a href="/change/<%= change._id%>">
+                    <%= change.changeId%>
+                </a>
 
-        <div>
-            <a href="/change/<%= change._id%>">
-                <%= change.changeId%>
+                    <%= change.header%>
+                </h2>
+            </div>
+            <div class=" text container">
+                <p>
+                    <%= change.description.substring(0,100)%>
+                </p>
+            </div>
+            <div class=" text container">
+                <%= change.enteredDate.toDateString() %>
+            </div>
+            <a class="ui primary button" href="/change/<%= change._id%>">
+                Open
             </a>
         </div>
-        <div>
-            <%= change.header%>
-        </div>
-        <div>
-            <%- change.description.substring(0,100)%>
-        </div>
-        <div>
-            <%= change.enteredDate.toDateString() %>
-        </div>
-        <a href="/change/<%= change._id%>">
-            Read More...
-        </a>
     <% }); %>
 
-    <a href="/change/new"> Add Change</a>
 
 <% include ./partials/footer %>
