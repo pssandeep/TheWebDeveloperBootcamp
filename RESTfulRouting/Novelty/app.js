@@ -27,20 +27,6 @@ var changeSchema = new mongoose.Schema({
 
 var Change = mongoose.model("Change", changeSchema);
 
-var newChange = new Change({
-    changeId: "1",
-    header: "Change 1",
-    description: "Change Description"
-});
-
-// Change.create(newChange, function (err, savedChange) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log(savedChange);
-//     }
-// });
-
 app.get("/change", function (req, res) {
     Change.find({}, function (err, resultChanges) {
         if (err) {
