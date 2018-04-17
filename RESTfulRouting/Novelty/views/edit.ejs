@@ -1,0 +1,22 @@
+<% include ./partials/header %>
+
+
+    <H1>CHANGE MANAGEMENT SYSTEM - EDIT PAGE</H1>
+
+    <form action="/change/<%= resultChange._id %>?__method=PUT" method="POST">
+        <div>
+            <input type="text" name="change[changeId]" value = "<%= resultChange.changeId %>">
+        </div>
+        <div>
+            <input type="text" name="change[header]" value = "<%= resultChange.header %>">
+        </div>
+        <div>
+            <textarea name="change[description]" cols="100" rows="10"> <%= resultChange.description %></textarea>
+        </div>
+        <button>Submit</button>
+
+    </form>
+
+    <a href="/change"> Home</a>
+
+    <% include ./partials/footer %>

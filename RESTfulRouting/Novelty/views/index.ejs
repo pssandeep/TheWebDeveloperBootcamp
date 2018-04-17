@@ -15,11 +15,13 @@
         </div>
         <div>
             <%- change.description.substring(0,100)%>
-        </div>        
+        </div>
         <div>
             <%= change.enteredDate.toDateString() %>
         </div>
-
+        <a href="/change/<%= change._id%>">
+            Read More...
+        </a>
     <% }); %>
 
     <a href="/change/new"> Add Change</a>

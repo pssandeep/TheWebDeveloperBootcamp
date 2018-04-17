@@ -2,14 +2,17 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-
 var urlencodedParser = bodyParser.urlencoded({
     extended: true
 });
+var expressSanitizer = require('express-sanitizer');
+var methodOverride = require('method-override');
 
 app.use(urlencodedParser);
+app.use(expressSanitizer());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(methodOverride('__method'));
 
 //Connect to MongoDB
 mongoose.connect('mongodb://localhost/Novelty');
@@ -47,6 +50,20 @@ app.get("/change/new", function (req, res) {
 
 });
 
+app.get("/change/:changeId/edit", function (req, res) {
+    Change.findById(req.params.changeId, function (err, resultChange) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("edit", {
+                resultChange: resultChange
+            });
+        }
+
+    });
+
+});
+
 app.get("/change/:changeId", function (req, res) {
 
     Change.findById(req.params.changeId, function (err, resultChange) {
@@ -56,6 +73,41 @@ app.get("/change/:changeId", function (req, res) {
             res.render("show", {
                 resultChange: resultChange
             });
+        }
+
+    });
+
+});
+
+app.put("/change/:changeId", function (req, res) {
+
+    Change.findByIdAndUpdate(req.params.changeId, req.body.change, function (err, updateChange) {
+        if (err) {
+            console.log(err);
+        } else {
+            Change.findById(req.params.changeId, function (err, resultChange) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render("show", {
+                        resultChange: resultChange
+                    });
+                }
+
+            });
+        }
+
+    });
+
+});
+
+app.delete("/change/:changeId", function (req, res) {
+
+    Change.findByIdAndRemove(req.params.changeId,function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/change");
         }
 
     });

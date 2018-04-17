@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
 
-    <H1>CHANGE MANAGEMENT SYSTEM - INDEX PAGE</H1>
+    <H1>CHANGE MANAGEMENT SYSTEM - SHOW PAGE</H1>
 
 
     <div>
@@ -16,6 +16,15 @@
     <div>
         <%= resultChange.enteredDate.toDateString() %>
     </div>
+
+    <div>
+        <a href="/change/<%= resultChange._id%>/edit">Edit</a>
+    </div>
+
+    <form method="POST" action="/change/<%= resultChange._id%>?__method=DELETE">
+        <button>Delete</button>
+
+    </form>
 
     <a href="/change"> Home</a>
 
