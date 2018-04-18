@@ -1,31 +1,31 @@
 <% include ./partials/header %>
 
 
+    <div class="ui raised container segment">
 
+        <div class="ui big breadcrumb">
+            <p class = "section">
+                <%= resultChange.changeId%>
+            </p>
+            <div class="divider"> / </div>
+            <p class = "section">
+                <%= resultChange.header%>
+            </p>
+        </div>
+        <div  class=" ui  container">
+            <%- resultChange.description%>
+        </div>
+        <div  class=" ui  container">
+            <%= resultChange.enteredDate.toDateString() %>
+        </div>
 
+        <div class="ui container">
+            <form method="POST" action="/change/<%= resultChange._id%>?__method=DELETE">
+                <a class="ui orange button" href="/change/<%= resultChange._id%>/edit">Edit</a>
+                <button class="ui red button">Delete</button>
 
-    <div>
-        <%= resultChange.changeId%>
+            </form>
+        </div>
     </div>
-    <div>
-        <%= resultChange.header%>
-    </div>
-    <div>
-        <%- resultChange.description%>
-    </div>
-    <div>
-        <%= resultChange.enteredDate.toDateString() %>
-    </div>
-
-    <div>
-        <a href="/change/<%= resultChange._id%>/edit">Edit</a>
-    </div>
-
-    <form method="POST" action="/change/<%= resultChange._id%>?__method=DELETE">
-        <button>Delete</button>
-
-    </form>
-
-    <a href="/change"> Home</a>
 
     <% include ./partials/footer %>

@@ -1,17 +1,16 @@
 <% include ./partials/header %>
 
-
-
     <% resultChanges.forEach(function(change){ %>
         <div class="ui raised container segment">
-            <div class=" text container">
-                <h2 class = "ui header">
-                <a href="/change/<%= change._id%>">
+
+            <div class="ui big breadcrumb">
+                <a class="section" href="/change/<%= change._id%>">
                     <%= change.changeId%>
                 </a>
-
+                <div class="divider"> / </div>
+                <a class="section" href="/change/<%= change._id%>">
                     <%= change.header%>
-                </h2>
+                </a>
             </div>
             <div class=" text container">
                 <p>
@@ -21,11 +20,7 @@
             <div class=" text container">
                 <%= change.enteredDate.toDateString() %>
             </div>
-            <a class="ui primary button" href="/change/<%= change._id%>">
-                Open
-            </a>
         </div>
     <% }); %>
-
 
 <% include ./partials/footer %>
