@@ -18,6 +18,7 @@ app.use(express.static("public"));
 //Connect to MongoDB
 mongoose.connect('mongodb://localhost/YelpCamp');
 
+//Call the Seed Function to populate the refresh the database.
 seedDB();
 
 
