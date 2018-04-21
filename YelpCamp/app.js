@@ -2,6 +2,10 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var seedDB = require("./seeds");
+
+//Schemas Required
+var CampGround = require("./models/campground");
 
 var urlencodedParser = bodyParser.urlencoded({
     extended: true
@@ -14,15 +18,8 @@ app.use(express.static("public"));
 //Connect to MongoDB
 mongoose.connect('mongodb://localhost/YelpCamp');
 
-//Schema Definition
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description:String
-});
+seedDB();
 
-//Schema Model
-var CampGround = mongoose.model("CampGround", campgroundSchema);
 
 // index route. To display all the campgrounds
 app.get("/campgrounds", function (req, res) {
