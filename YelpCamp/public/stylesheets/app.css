@@ -37,3 +37,7 @@ button.btnwidth{
 p  a.btn{
     margin-top :15px;
 }
+
+p small {
+    font-size : .65em;
+}
