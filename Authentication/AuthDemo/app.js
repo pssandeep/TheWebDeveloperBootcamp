@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-const LocalStrategy = require("passport-local");
+const LocalStrategy = require("passport-local").Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const User = require("./models/user");
@@ -36,6 +36,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/secret", (req, res) => {
+    console.log("SECRET ROUTE")
     res.render("secret");
 });
 
@@ -43,24 +44,26 @@ app.get("/login", (req, res) => {
     res.render("login");
 });
 
-app.post("/login",passport.authenticate("local", {
-    successRedirect : "/secret",
-    failureRedirect : "/login"
-}), (req, res) => {
-    // res.send("login");
-});
+app.post("/login",
+    passport.authenticate("local", {
+        successRedirect : "/secret",
+        failureRedirect : "/login",
+        failureFlash :true
+    })
+);
 
 app.get("/register", (req,res) => {
     res.render("register")
 });
 
 app.post("/register", (req,res) => {
-    User.register(new User({username : req.body.name}), req.body.password, (err,user) => {
+    User.register(new User({username : req.body.username}), req.body.password, (err,user) => {
         if(err){
             console.log(err);
             return res.render("register");
         } 
         passport.authenticate("local")(req,res, () => {
+            console.log("REGISTER POST ROUTE");
             res.redirect("/secret");
         });
     });
