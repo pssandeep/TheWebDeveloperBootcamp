@@ -3,10 +3,13 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var seedDB = require("./seeds");
+var passport = require("passport");
+var LocalStrategy = require("passport-local");
 
 //Schemas Required
 var CampGround = require("./models/campground");
 var Comment = require("./models/comment");
+var User = require("./models/user");
 
 var urlencodedParser = bodyParser.urlencoded({
     extended: true
@@ -22,6 +25,17 @@ mongoose.connect('mongodb://localhost/YelpCamp');
 //Call the Seed Function to populate the refresh the database.
 seedDB();
 
+// Passport Configuration
+app.use(require("express-session")({
+    secret : "a",
+    resave : false,
+    saveUninitialized : false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // index route. To display all the campgrounds
 app.get("/campgrounds", function (req, res) {
@@ -122,6 +136,25 @@ app.post("/campgrounds/:id/comments", function (req, res) {
 
     });
 
+});
+
+//Auth Routes
+
+app.get("/register", (req,res) => {
+    res.render("auth/register");
+});
+
+app.post("/register", (req,res) => {
+    var newUser= new User({username : req.body.username});
+    User.register(newUser, req.body.password, (err,user) => {
+        if(err){
+            console.log(err);
+            return res.render("auth/register");
+        }
+        passport.authenticate("local")(req,res, () => {
+            res.redirect("/campgrounds");
+        });
+    });
 });
 
 //server port listening at Port 3000
