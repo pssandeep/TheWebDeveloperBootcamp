@@ -1,7 +1,11 @@
-SIGN UP.
+<% include ../partials/header %>
+    <div class="container">
+        <h2 class="hdcenter">SignUp</h2>
 
-<form action = "/register" method = "POST">
-    <input type = "text" name = "username" placeholder = "USERNAME">
-    <input type = "password" name = "password" placeholder = "PASSWORD">
-    <button>Sign Up</button>
-</form>
+        <form action="/register" method="POST">
+            <input class="form-control inputwidth text-center" type="text" name="username" placeholder="USERNAME">
+            <input class="form-control inputwidth text-center" type="password" name="password" placeholder="PASSWORD">
+            <button class="btn btn-outline-info btn-block btnwidth">Sign Up</button>
+        </form>
+    </div>
+<% include ../partials/footer %>

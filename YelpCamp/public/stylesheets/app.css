@@ -18,6 +18,7 @@
   }
 
 input.inputwidth[type = "text"],
+input.inputwidth[type = "password"],
 button.btnwidth{
       width : 30%;
       margin :25px auto;
