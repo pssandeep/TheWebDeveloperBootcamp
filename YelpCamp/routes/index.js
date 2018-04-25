@@ -60,4 +60,5 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login");
 }
 
+//Export the router
 module.exports = router;
