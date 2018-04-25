@@ -30,7 +30,7 @@ app.use(express.static("public"));
 mongoose.connect('mongodb://localhost/YelpCamp');
 
 //Call the Seed Function to populate the refresh the database.
-seedDB();
+// seedDB();
 
 // Passport Configuration
 app.use(require("express-session")({
