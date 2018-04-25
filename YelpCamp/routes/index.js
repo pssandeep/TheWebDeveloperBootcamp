@@ -43,7 +43,7 @@ router.post("/login", passport.authenticate("local", {
 //Logout User
 router.get("/logout", (req, res) => {
     req.logOut();
-    res.redirect("/login");
+    res.redirect("/campgrounds");
 });
 
 //home route
@@ -57,7 +57,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
     }
-    res.redirect("/login");
+    res.redirect("/campgrounds");
 }
 
 //Export the router

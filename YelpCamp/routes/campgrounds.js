@@ -5,7 +5,7 @@ var CampGround = require("../models/campground");
 // Campgrounds Route
 
 // index route. To display all the campgrounds
-router.get("/", isLoggedIn, function (req, res) {
+router.get("/", function (req, res) {
     CampGround.find({}, function (err, campgrounds) {
         if (err) {
             console.log(err);
@@ -25,7 +25,7 @@ router.get("/new", isLoggedIn, function (req, res) {
 });
 
 //show route. Show more details about the campgrounds
-router.get("/:id", isLoggedIn, function (req, res) {
+router.get("/:id",  function (req, res) {
     CampGround.findById(req.params.id).populate("comments").exec(function (err, campground) {
         if (err) {
             console.log(err);
@@ -43,10 +43,15 @@ router.post("/", isLoggedIn, function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
+    var author = {
+        id : req.user._id,
+        username : req.user.username
+    };
     var newCampGround = {
         name: name,
         image: image,
-        description: desc
+        description: desc,
+        author : author
     };
 
     CampGround.create(newCampGround, function (err, newlyAddedCampground) {

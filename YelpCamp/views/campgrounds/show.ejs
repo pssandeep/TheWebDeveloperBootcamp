@@ -22,6 +22,10 @@
                                 <%= campground.name %>
                             </a>
                         </h4>
+                        <em>Submitted by
+                            <%= campground.author.username%>
+                        </em>
+                        <hr>
                         <p class - "card-text">
                             <%= campground.description%>
                         </p>
@@ -33,15 +37,26 @@
                             <a class="btn btn-success" href="/campgrounds/<%= campground._id%>/comments/new">Add Comments</a>
                         </p>
                     </div>
-                    <h5><p>Comments</p></h5>
-
+                    <h5>
+                        <p>Comments</p>
+                    </h5>
+                    <hr>
                     <% campground.comments.forEach(function(comment){ %>
                         <div class="row">
                             <div class="col-md-12">
                                 <blockquote class="blockquote">
-                                <p><small><%= comment.text%></small></p>
-                                <footer class="blockquote-footer"><%= comment.author.username%> <small>10 days ago</small></cite></footer>
+                                    <p>
+                                        <small>
+                                            <%= comment.text%>
+                                        </small>
+                                    </p>
+                                    <footer class="blockquote-footer">
+                                        <%= comment.author.username%>
+                                            <small>10 days ago</small>
+                                            </cite>
+                                    </footer>
                                 </blockquote>
+                                <hr>
 
                                 <!-- <strong>
                                     <%= comment.author%>
@@ -92,4 +107,4 @@
         </div> -->
         <a href="/campgrounds"> Back To CampGrounds</a>
     </div>
-    <% include ../partials/footer %>
+<% include ../partials/footer %>
