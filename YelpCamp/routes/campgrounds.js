@@ -91,6 +91,19 @@ router.put("/:id", (req,res) => {
     
 });
 
+//Delete Campgrounds
+router.delete("/:id", (req,res) => {
+    CampGround.findByIdAndRemove(req.params.id, (err) => {
+        if(err){
+            console.log(err);
+        } else{
+            res.redirect("/campgrounds/");
+        }
+        
+    });
+    
+});
+
 //Middleware functions
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
