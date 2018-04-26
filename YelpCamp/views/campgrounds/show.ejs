@@ -25,6 +25,8 @@
                         <em>Submitted by
                             <%= campground.author.username%>
                         </em>
+                        <p><a class = "btn btn-outline-info" href = "/campgrounds/<%= campground._id%>/edit">Edit</a>
+                            <a class = "btn btn-outline-danger" href = "/campgrounds/<%= campground._id%>/edit">Delete</a></p>
                         <hr>
                         <p class - "card-text">
                             <%= campground.description%>

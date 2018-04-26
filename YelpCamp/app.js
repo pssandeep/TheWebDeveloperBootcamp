@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var seedDB = require("./seeds");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
+var methodOverride = require("method-override");
 
 //Schemas Required
 var CampGround = require("./models/campground");
@@ -43,6 +44,9 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+//User Method-Override
+app.use(methodOverride("_method"));
 
 //Middleware to include req.user in all pages
 app.use((req, res, next) => {
