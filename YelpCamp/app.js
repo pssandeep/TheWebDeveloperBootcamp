@@ -19,7 +19,7 @@ var indexRoutes = require("./routes/index");
 
 //BodyParser
 var urlencodedParser = bodyParser.urlencoded({
-    extended: true
+  extended: true
 });
 app.use(urlencodedParser);
 
@@ -28,17 +28,19 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 //Connect to MongoDB
-mongoose.connect('mongodb://localhost/YelpCamp');
+mongoose.connect("mongodb://localhost/YelpCamp");
 
 //Call the Seed Function to populate the refresh the database.
 // seedDB();
 
 // Passport Configuration
-app.use(require("express-session")({
+app.use(
+  require("express-session")({
     secret: "a",
     resave: false,
     saveUninitialized: false
-}));
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -50,8 +52,8 @@ app.use(methodOverride("_method"));
 
 //Middleware to include req.user in all pages
 app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    next();
+  res.locals.currentUser = req.user;
+  next();
 });
 
 //Routes
@@ -61,4 +63,3 @@ app.use(indexRoutes);
 
 //server port listening at Port 3000
 app.listen("3000", () => console.log("YelpCamp Server started on Port #3000"));
-

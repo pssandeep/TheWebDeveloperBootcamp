@@ -73,9 +73,9 @@ router.get("/:id/edit", (req,res) => {
         } else{
             res.render("campgrounds/edit", {campground : foundCampGround});
         }
-        
+
     });
-    
+
 });
 
 //Edit Campgrounds
@@ -86,9 +86,9 @@ router.put("/:id", (req,res) => {
         } else{
             res.redirect("/campgrounds/" + req.params.id);
         }
-        
+
     });
-    
+
 });
 
 //Delete Campgrounds
@@ -99,9 +99,9 @@ router.delete("/:id", (req,res) => {
         } else{
             res.redirect("/campgrounds/");
         }
-        
+
     });
-    
+
 });
 
 //Middleware functions
