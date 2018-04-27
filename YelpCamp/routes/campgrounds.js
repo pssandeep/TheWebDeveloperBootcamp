@@ -108,6 +108,7 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login");
 }
 
+//Check if the user is logged in and authorised to edit/delete
 function checkCampGroundOwnership(req, res, next) {
 
     if (req.isAuthenticated()) {

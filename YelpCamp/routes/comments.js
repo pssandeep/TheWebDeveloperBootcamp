@@ -48,6 +48,39 @@ router.post("/", isLoggedIn, function (req, res) {
 
 });
 
+//Form to edit comment
+router.get("/:comment_id/edit",  function (req, res) {
+    CampGround.findById(req.params.id, function (err, campground) {
+        if (err) {
+            console.log(err);
+        } else {
+            Comment.findById(req.params.comment_id, function(err, foundComment){
+                if(err){
+                    console.log(err);
+                } else{
+                    res.render("comments/edit", {
+                        campground: campground,
+                        comment : foundComment
+                    });  
+                }
+            });
+        }
+
+    });
+
+});
+
+//Form to edit comment
+router.put("/:comment_id",  function (req, res) {
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, foundComment){
+        if(err){
+            console.log(err);
+        } else{
+            res.redirect("/campgrounds/" + req.params.id);  
+        }
+    });
+});
+
 //Middleware functions
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
