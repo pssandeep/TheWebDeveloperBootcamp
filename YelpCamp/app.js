@@ -6,6 +6,7 @@ var seedDB = require("./seeds");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var methodOverride = require("method-override");
+var flash = require("connect-flash");
 
 //Schemas Required
 var CampGround = require("./models/campground");
@@ -49,10 +50,14 @@ passport.deserializeUser(User.deserializeUser());
 
 //User Method-Override
 app.use(methodOverride("_method"));
+//Using connect flash
+app.use(flash());
 
 //Middleware to include req.user in all pages
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 

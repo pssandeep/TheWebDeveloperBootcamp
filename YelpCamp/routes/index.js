@@ -43,22 +43,23 @@ router.post("/login", passport.authenticate("local", {
 //Logout User
 router.get("/logout", (req, res) => {
     req.logOut();
+    req.flash("error", "You have successfully logged out. See you soon.");
     res.redirect("/campgrounds");
 });
 
 //home route
-router.get("/", isLoggedIn, function (req, res) {
+router.get("/", function (req, res) {
 
     res.render("home");
 });
 
-//Middleware functions
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next()
-    }
-    res.redirect("/campgrounds");
-}
+// //Middleware functions
+// function isLoggedIn(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next()
+//     }
+//     res.redirect("/campgrounds");
+// }
 
 //Export the router
 module.exports = router;
