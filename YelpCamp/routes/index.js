@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
+var middleware = require("../middleware");
 
 //Auth Routes
 
@@ -17,12 +18,16 @@ router.post("/register", (req, res) => {
     });
     User.register(newUser, req.body.password, (err, user) => {
         if (err) {
-            console.log(err);
-            return res.render("auth/register");
+            //console.log(err);
+            req.flash("error", err.message);
+            res.redirect("back");
+        } else {
+            passport.authenticate("local")(req, res, () => {
+                req.flash("success", "Welcome to YelpCamp " + user.username);
+                res.redirect("/campgrounds");
+
+            });
         }
-        passport.authenticate("local")(req, res, () => {
-            res.redirect("/campgrounds");
-        });
     });
 });
 
@@ -36,20 +41,17 @@ router.get("/login", (req, res) => {
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/campgrounds",
     failureRedirect: "/login"
-}), (req, res) => {
-
-});
+}), (req, res) => {});
 
 //Logout User
 router.get("/logout", (req, res) => {
     req.logOut();
-    req.flash("error", "You have successfully logged out. See you soon.");
+    req.flash("success", "You have successfully logged out. See you soon.");
     res.redirect("/campgrounds");
 });
 
 //home route
 router.get("/", function (req, res) {
-
     res.render("home");
 });
 

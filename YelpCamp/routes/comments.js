@@ -14,6 +14,8 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
     CampGround.findById(req.params.id, function (err, campground) {
         if (err) {
             console.log(err);
+            req.flash("error",err.message);
+            res.redirect("back");
         } else {
             res.render("comments/new", {
                 campground: campground
@@ -29,6 +31,8 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
     CampGround.findById(req.params.id, function (err, campground) {
         if (err) {
             console.log(err);
+            req.flash("error",err.message);
+            res.redirect("back");
         } else {
             Comment.create(req.body.comment, function (err, comment) {
                 //add username and id to comment
@@ -55,10 +59,12 @@ router.get("/:comment_id/edit",middleware.checkCommentOwnership,  function (req,
     CampGround.findById(req.params.id, function (err, campground) {
         if (err) {
             console.log(err);
+            req.flash("error",err);
+            res.redirect("back");
         } else {
             Comment.findById(req.params.comment_id, function(err, foundComment){
                 if(err){
-                    console.log(err);
+                    console.log(err.message);
                 } else{
                     res.render("comments/edit", {
                         campground: campground,
@@ -76,7 +82,8 @@ router.get("/:comment_id/edit",middleware.checkCommentOwnership,  function (req,
 router.put("/:comment_id", middleware.checkCommentOwnership,  function (req, res) {
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, foundComment){
         if(err){
-            console.log(err);
+            req.flash("error",err.message);
+            res.redirect("back");
         } else{
             req.flash("success","Comment editted successfully.");
             res.redirect("/campgrounds/" + req.params.id);  
@@ -90,6 +97,8 @@ router.delete("/:comment_id", middleware.checkCommentOwnership,  function (req, 
     Comment.findByIdAndRemove(req.params.comment_id, function(err){
         if(err){
             console.log(err);
+            req.flash("error",err.message);
+            res.redirect("back");
         } else{
             req.flash("success","Comment deleted successfully.");
             res.redirect("/campgrounds/" + req.params.id);  
