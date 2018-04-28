@@ -1,0 +1,33 @@
+/* div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 6s;
+}
+
+/* Standard syntax */
+/* @keyframes example {
+    0% {background-color: red;}
+    50%{background-color: black;}
+    100% {background-color: yellow;}
+}  */
+
+
+@keyframes example {
+    0%   {background-color:white; left:0px; top:0px;}
+    25%  {background-color:grey; left:1000px; top:0px;}
+    50%  {background-color:greenyellow; left:1000px; top:1000px;}
+    75%  {background-color:purple; left:0px; top:1000px;}
+    100% {background-color:black; left:0px; top:0px;}
+}
+
+/* The element to apply the animation to */
+div {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 10s;
+}
